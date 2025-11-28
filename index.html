@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <a href="setting.html">
+    <img src="https://cdn-icons-png.flaticon.com/512/666/666181.png" width="20" height="20" alt="Settings" style="cursor:pointer;">
+  </a>
+
+
+
+  </a>
+
+  <title>ODD Proxy</title>
+  <style>
+    body {
+      background: url("https://cdn.mos.cms.futurecdn.net/uVwrSjfVvkGwk9y6zNJMob.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: blue;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 300px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>ODD Proxy</h1>
+  <h3>Enter a website URL</h3>
+
+  <input id="url" placeholder="example.com">
+  <button onclick="go()">Go</button>
+
+  <script>
+    function go() {
+      let site = document.getElementById("url").value.trim();
+      if (!site.startsWith("http")) site = "https://" + site;
+
+      const win = window.open("about:blank", "_blank");
+      win.document.write(`
+        <html>
+          <body style="margin:0; overflow:hidden;">
+            <iframe src="https://YOUR-PROXY-URL/service/${encodeURIComponent(site)}"
+            style="border:0; width:100vw; height:100vh;"></iframe>
+          </body>
+        </html>
+      `);
+    }
+  </script>
+
+</body>
+</html>
