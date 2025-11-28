@@ -1,6 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+<head><!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>ODD Proxy</title>
+
+  <!-- Dynamic favicon -->
+  <link id="favicon" rel="icon" href="https://thumbs.dreamstime.com/b/google-classroom-logo-editorial-illustrative-white-background-eps-download-vector-jpeg-banner-google-classroom-logo-editorial-208329364.jpg" type="image/png">
+
+  <style>
+    body {
+      background: url("https://cdn.mos.cms.futurecdn.net/uVwrSjfVvkGwk9y6zNJMob.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding-top: 50px;
+    }
+
+    #settingsBtn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      cursor: pointer;
+    }
+
+    h1 { color: blue; margin-bottom: 20px; }
+    h3 { color: white; margin-bottom: 10px; }
+
+    input {
+      width: 300px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Settings button -->
+  <a href="setting.html">
+    <img id="settingsBtn" src="https://cdn-icons-png.flaticon.com/512/666/666181.png" alt="Settings">
+  </a>
+
+  <h1>ODD Proxy</h1>
+  <h3>Enter a website URL</h3>
+
+  <input id="url" placeholder="example.com">
+  <button onclick="go()">Go</button>
+
+  <script>
+    // Load settings
+    const logo = localStorage.getItem('proxyLogo') ||
+      'https://thumbs.dreamstime.com/b/google-classroom-logo-editorial-illustrative-white-background-eps-download-vector-jpeg-banner-google-classroom-logo-editorial-208329364.jpg';
+
+    const antiClose = localStorage.getItem('antiClose') || 'off';
+
+    // Set favicon
+    document.getElementById('favicon').href = logo;
+
+    // Anti-close
+    if (antiClose === 'on') {
+      window.addEventListener('beforeunload', function(e) {
+        e.preventDefault();
+        e.returnValue = '';
+      });
+    }
+
+    // Working proxy launcher
+    function go() {
+      let site = document.getElementById("url").value.trim();
+      if (!site.startsWith("http")) site = "https://" + site;
+
+      // IMPORTANT: Correct proxy URL
+      const proxyUrl =
+        "https://HtmlScriptCreator.hgfnuvhghtfhhgf.replit.app/service?url=" +
+        encodeURIComponent(site);
+
+      // Always open about:blank then redirect
+      const win = window.open("about:blank", "_blank");
+      win.location.href = proxyUrl;
+    }
+  </script>
+
+</body>
+</html>
+
   <meta charset="UTF-8">
   <title>ODD Proxy</title>
 
