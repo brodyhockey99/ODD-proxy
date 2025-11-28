@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ODD Proxy Settings</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: blue;
+      margin-bottom: 30px;
+    }
+
+    select, button {
+      padding: 10px 15px;
+      margin: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    img.logo-preview {
+      width: 100px;
+      height: auto;
+      margin-top: 20px;
+      border: 2px solid white;
+      border-radius: 6px;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>ODD Proxy Settings</h1>
+
+<!-- Proxy Type Selection -->
+<label for="proxyType">Select Proxy Type:</label>
+<select id="proxyType">
+  <option value="Ultraviolet">Ultraviolet</option>
+  <option value="Rammerhead">Rammerhead</option>
+  <option value="Glype">Glype</option>
+</select>
+
+<!-- Logo Selection -->
+<label for="logoSelect">Select Website Logo:</label>
+<select id="logoSelect">
+  <option value="https://thumbs.dreamstime.com/b/google-classroom-logo-editorial-illustrative-white-background-eps-download-vector-jpeg-banner-google-classroom-logo-editorial-208329364.jpg">Logo 1</option>
+  <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQin-dQfpiuJ3rlIFuQBK48EbHFnVTfXi8_ew&s">Logo 2</option>
+  <option value="https://cdn-1.webcatalog.io/catalog/study-island/study-island-social-preview.png?v=1714779648907">Logo 3</option>
+</select>
+
+<img id="logoPreview" class="logo-preview" src="https://thumbs.dreamstime.com/b/google-classroom-logo-editorial-illustrative-white-background-eps-download-vector-jpeg-banner-google-classroom-logo-editorial-208329364.jpg" alt="Logo Preview">
+
+<!-- Anti-Close Toggle -->
+<label for="antiClose">Anti-Close:</label>
+<select id="antiClose">
+  <option value="on">On</option>
+  <option value="off">Off</option>
+</select>
+
+<!-- Save Button -->
+<br>
+<button onclick="saveSettings()">Save Settings</button>
+
+<script>
+  // Load saved settings on page load
+  window.onload = function() {
+    const proxy = localStorage.getItem('proxyType');
+    if(proxy) document.getElementById('proxyType').value = proxy;
+
+    const logo = localStorage.getItem('proxyLogo');
+    if(logo) {
+      document.getElementById('logoSelect').value = logo;
+      document.getElementById('logoPreview').src = logo;
+    }
+
+    const anti = localStorage.getItem('antiClose');
+    if(anti) document.getElementById('antiClose').value = anti;
+  }
+
+  // Update logo preview when changed
+  document.getElementById('logoSelect').addEventListener('change', function() {
+    document.getElementById('logoPreview').src = this.value;
+  });
+
+  // Save settings to localStorage
+  function saveSettings() {
+    const proxy = document.getElementById('proxyType').value;
+    const logo = document.getElementById('logoSelect').value;
+    const anti = document.getElementById('antiClose').value;
+
+    localStorage.setItem('proxyType', proxy);
+    localStorage.setItem('proxyLogo', logo);
+    localStorage.setItem('antiClose', anti);
+
+    alert('Settings saved!');
+  }
+</script>
+
+</body>
+</html>
